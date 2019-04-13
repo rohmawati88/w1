@@ -306,7 +306,7 @@ Dari dataset berikut ini, manakah yang termasuk Tidy Data? Dapatkah Anda menjela
 
 
 ```r
-table1 #tidak tidy, negara yang sama muncul di dua baris
+table1 #tidak tidy
 ```
 
 ```
@@ -322,7 +322,7 @@ table1 #tidak tidy, negara yang sama muncul di dua baris
 ```
 
 ```r
-table2 #tidak tidy
+table2 #tidy
 ```
 
 ```
@@ -360,7 +360,7 @@ table3 #tidak tidy
 ```
 
 ```r
-table4a #tidy, negara berbeda muncul masing2 satu kali
+table4a #tidak tidy
 ```
 
 ```
@@ -373,7 +373,7 @@ table4a #tidy, negara berbeda muncul masing2 satu kali
 ```
 
 ```r
-table4b #tidy
+table4b #tidak tidy
 ```
 
 ```
@@ -386,7 +386,7 @@ table4b #tidy
 ```
 
 ```r
-table5 #tidak tidy, negara yang sama muncul di dua baris
+table5 #tidak tidy
 ```
 
 ```

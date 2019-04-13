@@ -76,11 +76,11 @@ library(tidyr)
 Dari dataset berikut ini, manakah yang termasuk Tidy Data? Dapatkah Anda menjelaskan alasan mengapa beberapa dataset berikut tidak *tidy*?
 
 ```{r}
-table1 #tidak tidy, negara yang sama muncul di dua baris
-table2 #tidak tidy
+table1 #tidak tidy
+table2 #tidy
 table3 #tidak tidy
-table4a #tidy, negara berbeda muncul masing2 satu kali
-table4b #tidy
-table5 #tidak tidy, negara yang sama muncul di dua baris
+table4a #tidak tidy
+table4b #tidak tidy
+table5 #tidak tidy
 ```
 

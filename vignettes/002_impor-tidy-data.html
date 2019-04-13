@@ -467,7 +467,7 @@ evals2 &lt;- read_csv2(&quot;C:/Users/USER/OneDrive/Dokumen/w1/data-raw/evals2.c
 <pre class="r"><code>library(tidyr)</code></pre>
 <pre><code>## Warning: package 'tidyr' was built under R version 3.5.3</code></pre>
 <p>Dari dataset berikut ini, manakah yang termasuk Tidy Data? Dapatkah Anda menjelaskan alasan mengapa beberapa dataset berikut tidak <em>tidy</em>?</p>
-<pre class="r"><code>table1 #tidak tidy, negara yang sama muncul di dua baris</code></pre>
+<pre class="r"><code>table1 #tidak tidy</code></pre>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -477,7 +477,7 @@ evals2 &lt;- read_csv2(&quot;C:/Users/USER/OneDrive/Dokumen/w1/data-raw/evals2.c
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<pre class="r"><code>table2 #tidak tidy</code></pre>
+<pre class="r"><code>table2 #tidy</code></pre>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -503,21 +503,21 @@ evals2 &lt;- read_csv2(&quot;C:/Users/USER/OneDrive/Dokumen/w1/data-raw/evals2.c
 ## 4 Brazil       2000 80488/174504898  
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583</code></pre>
-<pre class="r"><code>table4a #tidy, negara berbeda muncul masing2 satu kali</code></pre>
+<pre class="r"><code>table4a #tidak tidy</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
 ## 1 Afghanistan    745   2666
 ## 2 Brazil       37737  80488
 ## 3 China       212258 213766</code></pre>
-<pre class="r"><code>table4b #tidy</code></pre>
+<pre class="r"><code>table4b #tidak tidy</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   country         `1999`     `2000`
 ## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
 ## 1 Afghanistan   19987071   20595360
 ## 2 Brazil       172006362  174504898
 ## 3 China       1272915272 1280428583</code></pre>
-<pre class="r"><code>table5 #tidak tidy, negara yang sama muncul di dua baris</code></pre>
+<pre class="r"><code>table5 #tidak tidy</code></pre>
 <pre><code>## # A tibble: 6 x 4
 ##   country     century year  rate             
 ## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
