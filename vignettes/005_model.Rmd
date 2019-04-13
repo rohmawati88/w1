@@ -26,10 +26,10 @@ Pemodelan bertujuan utama untuk menyederhanakan suatu fenomena sehingga melalui 
 Terdapat berbagai jenis model tersedia saat ini, contohnya : *tree-based model*, *neural network*, *deep learning* dan lain-lain. Namun, pada modul pengantar ini kita akan mempelajari satu jenis model mendasar yaitu regresi linier untuk membentuk pemahaman mengenai konsep modeling. Paket yang akan digunakan adalah `readr`, `modelr`, `broom` dan `ggplot2`. Aktifkanlah semua paket tersebut!
 
 ```{r}
-# ___
-# ___
-# ___
-# ___
+library(readr)
+library(modelr)
+library(broom)
+library(ggplot2)
 ```
 
 Dalam regresi linier selalu hanya ada satu *outcome variable* `y` dan satu atau lebih *predictor/explanatory variable(s)*. Anda akan mempergunakan dataset `evals` untuk melakukan pemodelan. Dataset `evals` tersebut berisikan skor penilaian terhadap pengajar beserta faktor-faktor lain yang berkaitan dengan individu pengajar atau kelas yang diajar. Imporlah dataset tersebut dengan melengkapi baris kode dibawah ini. Ada berapa observasi dan ada variabel pada dataset tersebut?
@@ -47,8 +47,8 @@ model <- model_function(y ~ x1 + ... xn, data = dataset)
 Anda ingin mengetahui hal-hal apa sajakah yang dapat mempengaruhi skor penilaian pengajar (`score`). Pertama Anda akan melakukan pengamatan pada variabel `bty_avg`. Lakukanlah pengamatan dengan membuat scatterplot dengan `bty_avg` pada sumbu x dan `score` pada sumbu y!
 
 ```{r}
-ggplot(evals, aes(x = ___, y = ___)) +
-  geom____()
+ggplot(evals, aes(x = bty_avg, y = score)) +
+  geom_point()
 ```
 
 Anda mendapati suatu fenomena pada grafik diatas, yaitu *overplotting*. *Overplotting* adalah kondisi dimana banyak titik-titik yang bertumpuk karena memiliki nilai yang sama. Hal tersebut dapat diperbaiki dengan menggunakan *jitter*. Dapatkah Anda menemukan perbedaan antara grafik di atas dengan grafik berikut? Berilah judul pada grafik berikut dan grafik sebelumnya.
@@ -56,7 +56,7 @@ Anda mendapati suatu fenomena pada grafik diatas, yaitu *overplotting*. *Overplo
 ```{r}
 ggplot(evals, aes(x = bty_avg, y = score)) +
   geom_jitter() +
-  labs(title = "___")
+  labs(title = "Observasi")
 ```
 
 Anda mendapati bahwa hanya dengan melakukan pengamatan dari grafik tidaklah cukup untuk mempelajari keterkaitan antara `score` dan `bty_avg`. Oleh karena itu, Anda ingin membuat pemodelan regresi linier untuk mempelajari keterkaitan antara kedua variabel tersebut. Buatlah pemodelan tersebut dengan menggunakan fungsi `lm()` dan simpanlah hasilnya dengan nama 'model1'! (Petunjuk: Jalankan `?lm` untuk membaca dokumentasi). Dapatkah Anda menuliskan persamaan linear yang didapatkan dari model1 tersebut?
@@ -83,7 +83,7 @@ model1_vals_broom <-
   augment()
 
 ggplot(model1_vals_broom, aes(x = bty_avg, y = score)) +
-  geom____() +
+  geom_point() +
   geom_line(aes(y = .fitted))
 
 # menggunakan paket modelr
@@ -93,7 +93,7 @@ model1_vals_modelr <-
   add_residuals(model1)
 
 ggplot(model1_vals_modelr, aes(x = bty_avg, y = score)) +
-  geom____() +
+  geom_point() +
   geom_line(aes(y = pred))
 ```
 
@@ -108,17 +108,17 @@ Menariknya, dengan menggunakan `ggplot2` Anda bisa langsung menambahkan garis `f
 
 ```{r}
 ggplot(evals, aes(x = bty_avg, y = score)) +
-  geom____() +
-  geom_smooth(method = "___")
+  geom_point() +
+  geom_smooth(method = "lm")
 ```
 
 
 Selanjutnya Anda tertarik untuk mempelajari keterkaitan antara `score` dengan `age`. Buatlah model untuk kedua variabel tersebut dan simpanlah dengan nama `model2`. Periksa bagaimana kualitas dari `model2` tersebut serta buatlah grafik menggunakan ggplot yang menyertakan garis `fitted value`!
 
 ```{r}
-model2 <- ___
+model2 <- lm(score ~ age, data = evals)
 
-ggplot(evals, aes(x = ___, y = ___)) +
+ggplot(evals, aes(x = score, y = age)) +
   geom_jitter() +
   geom_smooth(method = "lm")
 ```
@@ -129,6 +129,6 @@ Anda telah membuat `model1` dan `model2` untuk mempelajari variabel `score`. And
 evals %>% 
   gather_predictions(model1, model2) %>% 
   ggplot(aes(x = pred, y = score, colour = model)) +
-  geom____() +
+  geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 ```
