@@ -26,7 +26,7 @@ Di bahasa pemrograman R, iterasi atau perulangan dapat dilakukan dengan beberapa
 Dalam contoh kasus ini, Anda diminta untuk mengimpor beberapa berkas `csv` secara sekaligus dan membuatnya ke dalam satu dataframe. Aktifkanlah paket yang memiliki fungsi untuk membuka berkas `csv`!
 
 ```{r}
-___
+library(readr)
 ```
 
 Berkas csv yang akan Anda impor memiliki informasi mengenai data lelang kota Bandung selama beberapa tahun, dimulai dari tahun 2013 hingga 2017. Data masing-masing tahun disimpan dalam berkas csv yang berbeda dan tersedia pada direktori 'data-raw'. Melalui '*File pane*' di RStudio (kanan bawah), Anda dapat bernavigasi ke direktori tersebut. Apakah nama berkas csv yang akan segera Anda impor? Bagaimana pola penamaan berkas-berkas tersebut?
@@ -34,7 +34,7 @@ Berkas csv yang akan Anda impor memiliki informasi mengenai data lelang kota Ban
 Selain melihat nama berkas secara manual, Anda juga dapat menggunakan fungsi `list.files()` melalui R untuk membuat daftar nama berkas dari suatu direktori. Dapatkah Anda membuat daftar nama berkas yang Akan diimpor dengan menggunakan fungsi tersebut? Gunakan pola penamaan berkas yang telah Anda pelajari sebagai isian untuk argumen `pattern` pada fungsi `list.files`!
 
 ```{r}
-daftar_berkas <- list.files("../data-raw", pattern = "___", full.names = TRUE)
+daftar_berkas <- list.files("../data-raw", pattern = "lelang-bandung", full.names = TRUE)
 daftar_berkas
 ```
 
@@ -58,9 +58,9 @@ Dapatkah Anda melengkapi kode berikut untuk mengimpor berkas-berkas csv yang ter
 
 ```{r}
 daftar_berkas
-___ <- vector(mode = "list", length = length(daftar_berkas))
+output_for <- vector(mode = "list", length = length(daftar_berkas))
 for (i in seq_along(output_for)) {
-  output_for[[i]] <- ___(daftar_berkas[[i]])
+  output_for[[i]] <- read_csv(daftar_berkas[[i]])
 }
 output_for
 ```
@@ -86,15 +86,15 @@ Silakan lengkapi kode berikut untuk mengimpor berkas csv dengan menggunakan fung
 
 ```{r}
 daftar_berkas
-output_lapply <- lapply(___, ___)
+output_lapply <- lapply(daftar_berkas,read_csv)
 output_lapply
 ```
 
 Dapatkah Anda memeriksa jenis dari obyek `output_lapply`? Tuliskanlah kode untuk mengubah `output_lapply` menjadi satu dataframe dan simpanlah hasilnya dengan nama `output_lapply`!
 
 ```{r}
-___ # cek jenis dari output_lapply
-output_lapply <- ___
+typeof(output_lapply) # cek jenis dari output_lapply
+output_lapply <- Reduce(rbind, output_lapply)
 output_lapply
 ```
 
@@ -112,7 +112,7 @@ Lengkapi kode berikut untuk mengimpor berkas csv dengan menggunakan `map_dfr` da
 ```{r}
 library(purrr) # aktifkan paket purrr
 daftar_berkas
-output_map <- map_dfr(___, ___)
+output_map <- map_dfr(daftar_berkas,read_csv)
 output_map
 class(output_map)
 ```
