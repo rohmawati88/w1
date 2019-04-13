@@ -40,28 +40,29 @@ Anda dapat menggunakan fungsi `glimpse` dari paket `dplyr` untuk melihat ringkas
 
 ```{r}
 library(dplyr)
-glimpse(___)
+glimpse(evals)
 ```
 
 Selain itu Anda juga dapat menggunakan fungsi `skim()` dari paket `skimr` untuk melihat rangkuman data. Pada *chunck* berikut, tuliskan kode untuk mengaktifkan paket `skimr` dan menjalankan fungsi `skim` pada data `evals`! Perbedaaan apakah yang Anda temukan antara penggunaan fungsi `glimpse()` dan `skim()`?
 
 ```{r}
-___
-___
+library(skimr)
+skim(evals)
 ```
 
 Umumnya berkas `csv` menggunakan penanda koma (,) untuk memisahkan antar kolom dan titik (.) sebagai penanda desimal. Namun bagaimana jika Anda memiliki berkas `csv` yang yang menggunakan titik-koma (;) untuk memisahkan kolom dan koma (,) sebagai penanda desimal? Sebagai contoh, pada direktori `data-raw` terdapar berkas `evals2` yang memiliki kriteria tersebut. Anda dapat menggunakan fungsi `read_csv2` untuk mengimpor berkas tersebut sebagaimana ditunjukan pada contoh berikut:
 
 ```{r}
-evals2 <- read_csv2("../data-raw/evals2.csv")
+library(readr)
+evals2 <- read_csv2("C:/Users/USER/OneDrive/Dokumen/w1/data-raw/evals2.csv")
 identical(evals, evals2) # fungsi untuk cek kesamaan antara dua obyek
 ```
 
 Selain berkas lokal yang tersedia di komputer, Anda juga dapat mengimpor berkas yang tersedia di internet langsung dengan menggunakan pranala (URL). Caranya adalah dengan mengganti lokasi berkas lokal dengan lokasi berkas *remote*. Data `evals` tersedia pada pranala "https://www.openintro.org/stat/data/evals.csv". Dapatkan Anda mengimpor berkas tersebut dan menyimpannya sebagai obyek dengan nama `evals3`? Gunakkan fungsi `identical()` untuk membandingkannya dengan `evals2`!
 
 ```{r}
-___ <- read_csv("___")
-___(___, evals2)
+evals3<- read_csv("https://www.openintro.org/stat/data/evals.csv")
+identical(evals3, evals2)
 ```
 
 ## Tidy data
@@ -69,17 +70,17 @@ ___(___, evals2)
 Demi memahami konsep Tidy Data, kita akan menggunakan dataset yang tersedia di paket `tidyr`. Aktifkanlah paket `tidyr` tersebut!
 
 ```{r}
-___
+library(tidyr)
 ```
 
 Dari dataset berikut ini, manakah yang termasuk Tidy Data? Dapatkah Anda menjelaskan alasan mengapa beberapa dataset berikut tidak *tidy*?
 
 ```{r}
-table1
-table2
-table3
-table4a
-table4b
-table5
+table1 #tidak tidy, negara yang sama muncul di dua baris
+table2 #tidak tidy
+table3 #tidak tidy
+table4a #tidy, negara berbeda muncul masing2 satu kali
+table4b #tidy
+table5 #tidak tidy, negara yang sama muncul di dua baris
 ```
 
